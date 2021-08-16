@@ -45,7 +45,7 @@ public class LoRomLoader implements RomInfoProvider {
 				String mirrorBlockName = getRomChunkMirrorName(romChunk, mirrorNum);
 				MemoryBlockUtils.createByteMappedBlock(prog, mirrorBlockName, mirrorAddress, primaryAddress,
 						(int) romChunk.getLength(), String.format("mirror of %s", primaryBlockName), "", true, false,
-						true, log);
+						true, false, log);
 				mirrorNum++;
 			}
 		}
