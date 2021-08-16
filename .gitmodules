@@ -1,0 +1,3 @@
+[submodule "SnesLoader/data/languages"]
+	path = SnesLoader/data/languages
+	url = git@github.com:qwertymodo/ghidra-65816.git
