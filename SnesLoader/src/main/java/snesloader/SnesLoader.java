@@ -102,13 +102,14 @@ public class SnesLoader extends AbstractProgramLoader {
 			List<Option> options, MessageLog log, Program prog, TaskMonitor monitor) {
 		return false;
 	}
-
+	
+	// 10.2+ version
 	@Override
-	protected List<Program> loadProgram(ByteProvider provider, String programName,
+	protected List<LoadedProgram> loadProgram(ByteProvider provider, String programName,
 			DomainFolder programFolder, LoadSpec loadSpec, List<Option> options, MessageLog log,
 			Object consumer, TaskMonitor monitor)
 			throws IOException, CancelledException {
-		List<Program> programs = new ArrayList<Program>();
+		List<LoadedProgram> programs = new ArrayList<LoadedProgram>();
 		Collection<RomInfo> detectedRomKinds = detectRomKind(provider);
 		if (detectedRomKinds.size() == 0) {
 			// Weird but ok.
@@ -142,7 +143,7 @@ public class SnesLoader extends AbstractProgramLoader {
 		RomInfo romInfo = detectedRomKinds.iterator().next();
 		boolean success = loadWithTransaction(provider, loadSpec, options, log, prog, monitor, romInfo);
 		if (success) {
-			programs.add(prog);
+			programs.add(new LoadedProgram(prog, programFolder));
 		}
 
 		return programs;
