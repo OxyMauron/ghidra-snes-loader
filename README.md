@@ -1,5 +1,7 @@
 # ghidra-snes-loader
-Loader for SNES ROMs.  Works with Ghidra v9.1 or later only.
+Loader for SNES ROMs.  Works with Ghidra v10.2 or later only.
+
+Basic support for HiROM and LoROM. Creates WRAM blocks as uninitialized memory.
 
 ## To Build and Install
 
