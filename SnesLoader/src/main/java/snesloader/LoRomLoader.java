@@ -50,6 +50,8 @@ public class LoRomLoader implements RomInfoProvider {
 			}
 		}
 
+		CreateWRAM(prog, log);
+		
 		// throw new UnsupportedOperationException("Loading a LO_ROM format is not
 		// implemented yet.");
 
@@ -87,6 +89,12 @@ public class LoRomLoader implements RomInfoProvider {
 
 	private static String getRomChunkMirrorName(RomChunk chunk, int mirrorNum) {
 		return String.format("%s_mirror%d", getRomChunkPrimaryName(chunk), mirrorNum);
+	}
+	
+	public static void CreateWRAM(Program prog, MessageLog log)  {
+		
+		MemoryBlockUtils.createUninitializedBlock(prog, false, "WRAM $7E:0000 - WRAM $7E:FFFF", prog.getAddressFactory().getDefaultAddressSpace().getAddress((long)0x7e_0000), 0x1_0000, "", "", true, true, true, log);
+		MemoryBlockUtils.createUninitializedBlock(prog, false, "WRAM $7F:0000 - WRAM $7F:FFFF", prog.getAddressFactory().getDefaultAddressSpace().getAddress((long)0x7f_0000), 0x1_0000, "", "", true, true, true, log);
 	}
 
 	@Override
